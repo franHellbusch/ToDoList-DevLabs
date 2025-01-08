@@ -11,6 +11,19 @@ export default [
   {
     rules: {
       "@typescript-eslint/no-explicit-any": false,
+      camelcase: "off",
+      eqeqeq: "off",
+      "prettier/prettier": "error",
+      "import/order": [
+        "error",
+        {
+          groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
+          alphabetize: {
+            order: "asc",
+            caseInsensitive: true,
+          },
+        },
+      ],
     },
   },
 ];
