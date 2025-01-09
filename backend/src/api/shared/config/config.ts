@@ -28,6 +28,11 @@ const config = {
     HOST: parsedEnv.MONGO_HOST,
     QUERY: parsedEnv.MONGO_QUERY,
   },
+  auth0: {
+    AUDIENCE: parsedEnv.AUTH0_AUDIENCE,
+    ISSUER_BASE_URL: parsedEnv.AUTH0_ISSUER_BASE_URL,
+    TOKEN_SIGNING_ALG: parsedEnv.AUTH0_TOKEN_SIGNING_ALG,
+  },
 };
 
 export default config;
