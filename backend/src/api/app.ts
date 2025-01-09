@@ -7,20 +7,20 @@ import { logger } from "./shared/utils/logger";
 class App {
   private readonly _app: Application;
   private readonly _server: Server;
-  //   private readonly _errorHandler: ErrorRequestHandler;
+  private readonly _errorHandler: ErrorRequestHandler;
 
   constructor(appInit: {
     middlewares: RequestHandler[];
-    // errorHandler: ErrorRequestHandler;
+    errorHandler: ErrorRequestHandler;
     // routes: Router[];
   }) {
     this._app = express();
     this._server = createServer(this._app);
-    // this._errorHandler = appInit.errorHandler;
+    this._errorHandler = appInit.errorHandler;
 
     this.setMiddlewares(appInit.middlewares);
     // this.setRoutes(appInit.routes);
-    // this.setErrorHandler();
+    this.setErrorHandler();
   }
 
   get app() {
@@ -53,9 +53,9 @@ class App {
     });
   }
 
-  //   private setErrorHandler() {
-  //     this._app.use(this._errorHandler);
-  //   }
+  private setErrorHandler() {
+    this._app.use(this._errorHandler);
+  }
 }
 
 export default App;
