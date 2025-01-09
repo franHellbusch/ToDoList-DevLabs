@@ -20,6 +20,14 @@ const config = {
     API_URL: parsedEnv.API_URL || "http://localhost:8080",
     apiVersion: parsedEnv.API_VERSION ? `api/${parsedEnv.API_VERSION}` : "/api",
   },
+  mongo: {
+    URI: parsedEnv.MONGO_URI || "127.0.0.1:27017",
+    DB_NAME: parsedEnv.MONGO_DB_NAME || "todolist",
+    USER: parsedEnv.MONGO_USER,
+    PASSWORD: parsedEnv.MONGO_PASSWORD,
+    HOST: parsedEnv.MONGO_HOST,
+    QUERY: parsedEnv.MONGO_QUERY,
+  },
 };
 
 export default config;

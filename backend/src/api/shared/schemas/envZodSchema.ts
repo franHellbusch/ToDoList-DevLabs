@@ -2,6 +2,7 @@ import { z } from "zod";
 import { throwCustomError } from "../helpers/throwCustomError";
 import { ErrorNames } from "../helpers/errorNames";
 import { formatZodErrors } from "../utils/formatZodErrors";
+import { mongoUriZodSchema } from "./mongoUriZodSchema";
 
 const envBaseZodSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]),
@@ -11,6 +12,8 @@ const envBaseZodSchema = z.object({
   API_VERSION: z.string(),
 });
 
-export const envStrictZodSchema = envBaseZodSchema.catch((def) => {
+const envCombinedZodSchema = envBaseZodSchema.merge(mongoUriZodSchema);
+
+export const envStrictZodSchema = envCombinedZodSchema.catch((def) => {
   return throwCustomError(ErrorNames.INVALID_ENVIRONMENT_VARIABLES, formatZodErrors(def.error));
 });

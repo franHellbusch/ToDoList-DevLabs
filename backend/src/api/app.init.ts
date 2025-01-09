@@ -1,8 +1,8 @@
 import cors from "cors";
 import config from "./shared/config/config";
 import express from "express";
-import { loggerMiddleware } from "./shared/utils/logger";
 import App from "./app";
+import morgan from "morgan";
 
 const appInit = () => {
   return new App({
@@ -10,7 +10,7 @@ const appInit = () => {
       cors(config.cors),
       express.json(),
       express.urlencoded({ extended: true }),
-      loggerMiddleware,
+      morgan("dev"),
     ],
   });
 };
