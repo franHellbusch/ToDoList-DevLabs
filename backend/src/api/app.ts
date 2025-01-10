@@ -12,14 +12,14 @@ class App {
   constructor(appInit: {
     middlewares: RequestHandler[];
     errorHandler: ErrorRequestHandler;
-    // routes: Router[];
+    routes: Router[];
   }) {
     this._app = express();
     this._server = createServer(this._app);
     this._errorHandler = appInit.errorHandler;
 
     this.setMiddlewares(appInit.middlewares);
-    // this.setRoutes(appInit.routes);
+    this.setRoutes(appInit.routes);
     this.setErrorHandler();
   }
 
@@ -43,7 +43,7 @@ class App {
 
   setRoutes(routers: Router[]) {
     routers.forEach((router) => {
-      this.app.use(config.server.apiVersion, router);
+      this.app.use(config.server.baseApiPath, router);
     });
   }
 

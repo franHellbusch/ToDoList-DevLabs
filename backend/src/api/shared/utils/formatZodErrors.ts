@@ -1,10 +1,10 @@
 import { z } from "zod";
 import { IFieldValidationError } from "../interfaces/IFieldValidationError";
 
-export function formatZodErrors(errors: z.ZodError): IFieldValidationError[] {
+export function formatZodErrors(error: z.ZodError): IFieldValidationError[] {
   const formattedErrors: IFieldValidationError[] = [];
 
-  errors.errors.forEach((issue) => {
+  error.errors.forEach((issue) => {
     const field = issue.path[0];
     const existingError = formattedErrors.find((error) => error.field === field);
 

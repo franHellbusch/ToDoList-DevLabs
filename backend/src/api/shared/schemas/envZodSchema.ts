@@ -10,7 +10,6 @@ const envBaseZodSchema = z.object({
   PORT: z.preprocess((val) => Number(val), z.number().min(1)),
   CLIENT_URL: z.string().url(),
   API_URL: z.string().url(),
-  API_VERSION: z.string(),
 });
 
 const envCombinedZodSchema = envBaseZodSchema.merge(mongoUriZodSchema).merge(auth0ConfigZodSchema);
