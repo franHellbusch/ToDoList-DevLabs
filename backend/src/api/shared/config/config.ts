@@ -18,7 +18,7 @@ const config = {
         parsedEnv.NODE_ENV || "development"
       } environment`,
     API_URL: parsedEnv.API_URL || "http://localhost:8080",
-    apiVersion: parsedEnv.API_VERSION ? `api/${parsedEnv.API_VERSION}` : "/api",
+    baseApiPath: "/api",
   },
   mongo: {
     URI: parsedEnv.MONGO_URI || "127.0.0.1:27017",

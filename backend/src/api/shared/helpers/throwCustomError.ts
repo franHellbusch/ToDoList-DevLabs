@@ -1,10 +1,6 @@
 import { IFieldValidationError } from "../interfaces/IFieldValidationError";
-import { CustomError } from "./customError";
-import { ErrorMessages } from "./errorMessages";
+import { createCustomError } from "./createCustomError";
 
-export const throwCustomError = (name: string, meta?: IFieldValidationError[]) => {
-  const { message, status } = ErrorMessages[name];
-  const customError = CustomError.create({ message, status, name, meta });
-
-  throw customError;
+export const throwCustomError = (name: string, fields?: IFieldValidationError[]) => {
+  throw createCustomError(name, fields);
 };

@@ -22,18 +22,6 @@ export const ErrorMessages = {
     message: "Bad Request: Not found",
     status: httpStatus.NOT_FOUND,
   },
-  [ErrorNames.DUPLICATE_KEY]: {
-    message: "Some field with a unique value are in use.",
-    status: httpStatus.CONFLICT,
-  },
-  [ErrorNames.FORBIDDEN]: {
-    message: "Forbidden: You do not have permission to access this resource",
-    status: httpStatus.FORBIDDEN,
-  },
-  [ErrorNames.EXISTING_ACCOUNT]: {
-    message: "Conflict: These credentials are already in use.",
-    status: httpStatus.CONFLICT,
-  },
   [ErrorNames.INVALID_ENVIRONMENT_VARIABLES]: {
     message: "Invalid Environment Variables",
     status: httpStatus.BAD_REQUEST,
