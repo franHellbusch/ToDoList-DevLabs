@@ -22,6 +22,14 @@ export const ErrorMessages = {
     message: "Bad Request: Not found",
     status: httpStatus.NOT_FOUND,
   },
+  [ErrorNames.DUPLICATE_KEY]: {
+    message: "Some field with a unique value are in use",
+    status: httpStatus.CONFLICT,
+  },
+  [ErrorNames.WRONG_ID_FORMAT]: {
+    message: "Bad Request: The provided ID format is invalid",
+    status: httpStatus.BAD_REQUEST,
+  },
   [ErrorNames.INVALID_ENVIRONMENT_VARIABLES]: {
     message: "Invalid Environment Variables",
     status: httpStatus.BAD_REQUEST,

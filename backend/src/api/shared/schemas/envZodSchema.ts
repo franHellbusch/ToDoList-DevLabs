@@ -1,9 +1,9 @@
 import { z } from "zod";
-import { throwCustomError } from "../helpers/throwCustomError";
 import { ErrorNames } from "../helpers/errorNames";
 import { formatZodErrors } from "../utils/formatZodErrors";
 import { mongoUriZodSchema } from "./mongoUriZodSchema";
 import { auth0ConfigZodSchema } from "./auth0ConfigZodSchema";
+import { createCustomError } from "../helpers/createCustomError";
 
 const envBaseZodSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]),
@@ -15,5 +15,5 @@ const envBaseZodSchema = z.object({
 const envCombinedZodSchema = envBaseZodSchema.merge(mongoUriZodSchema).merge(auth0ConfigZodSchema);
 
 export const envStrictZodSchema = envCombinedZodSchema.catch((def) => {
-  return throwCustomError(ErrorNames.INVALID_ENVIRONMENT_VARIABLES, formatZodErrors(def.error));
+  throw createCustomError(ErrorNames.INVALID_ENVIRONMENT_VARIABLES, formatZodErrors(def.error));
 });

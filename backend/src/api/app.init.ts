@@ -4,7 +4,7 @@ import express from "express";
 import App from "./app";
 import morgan from "morgan";
 import { errorHandlerMiddleware } from "./shared/middlewares/errorHandlerMiddleware";
-import toDoRouter from "./modules/todos/dependencies";
+import toDoRouter from "./modules/tasks/dependencies";
 import healthRouter from "./modules/health/dependencies";
 
 const appInit = () => {
