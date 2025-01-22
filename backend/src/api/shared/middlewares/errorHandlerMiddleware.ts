@@ -11,10 +11,14 @@ export const errorHandlerMiddleware: ErrorRequestHandler = (
   res: Response,
   _next: NextFunction
 ) => {
-  logger.error(err);
+  const shouldLog = err.status && err.status >= 500;
+
+  if (shouldLog) {
+    logger.error(err);
+  }
 
   const { message, status, name, fields } =
-    err.name == "UnauthorizedError"
+    err.name == "UnauthorizedError" || err.name == "InvalidTokenError"
       ? createCustomError(ErrorNames.UNAUTHORIZED)
       : CustomError.create(err);
 

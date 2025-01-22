@@ -1,35 +1,81 @@
 import { Document, Model, RootFilterQuery, UpdateQuery } from "mongoose";
+import { catchAndCreateMongoError } from "../helpers/catchAndCreateMongoError";
 
 export class BaseMongoRepository<T extends Document> {
   constructor(private readonly model: Model<T>) {}
 
   getAll = async (params: RootFilterQuery<T> = {}) => {
-    return await this.model.find(params);
+    try {
+      return await this.model.find(params);
+    } catch (err) {
+      throw catchAndCreateMongoError(err);
+    }
   };
 
   getById = async (id: string) => {
-    return await this.model.findById(id);
+    try {
+      return await this.model.findById(id);
+    } catch (err) {
+      throw catchAndCreateMongoError(err);
+    }
   };
 
   getBy = async (filter: RootFilterQuery<T> = {}) => {
-    return await this.model.findOne(filter);
+    try {
+      return await this.model.findOne(filter);
+    } catch (err) {
+      throw catchAndCreateMongoError(err);
+    }
   };
 
   create = async (object: unknown) => {
-    const data = new this.model(object);
-    return await data.save();
+    try {
+      const data = new this.model(object);
+      return await data.save();
+    } catch (err) {
+      throw catchAndCreateMongoError(err);
+    }
   };
 
   updateById = async (id: string, object: UpdateQuery<T>) => {
-    const data = await this.model.findByIdAndUpdate(id, object, {
-      new: true,
-      upsert: true,
-    });
+    try {
+      const data = await this.model.findByIdAndUpdate(id, object, {
+        new: true,
+        upsert: true,
+      });
 
-    return data;
+      return data;
+    } catch (err) {
+      throw catchAndCreateMongoError(err);
+    }
+  };
+
+  updateBy = async (filter: RootFilterQuery<T> = {}, object: UpdateQuery<T>) => {
+    try {
+      const data = await this.model.findOneAndUpdate(filter, object, {
+        new: true,
+        upsert: true,
+      });
+
+      return data;
+    } catch (err) {
+      throw catchAndCreateMongoError(err);
+    }
   };
 
   deleteById = async (id: string) => {
-    await this.model.findByIdAndDelete(id);
+    try {
+      await this.model.findByIdAndDelete(id);
+    } catch (err) {
+      throw catchAndCreateMongoError(err);
+    }
+  };
+
+  deleteBy = async (filter: RootFilterQuery<T> = {}) => {
+    try {
+      await this.model.findOneAndDelete(filter);
+    } catch (err) {
+      throw catchAndCreateMongoError(err);
+    }
   };
 }
