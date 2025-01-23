@@ -5,6 +5,9 @@ import { mongoUriZodSchema } from "./mongoUriZodSchema";
 import { auth0ConfigZodSchema } from "./auth0ConfigZodSchema";
 import { createCustomError } from "../helpers/createCustomError";
 
+/**
+ * Defines the schema for validating environment variables using Zod.
+ */
 const envBaseZodSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]),
   PORT: z.preprocess((val) => Number(val), z.number().min(1)),
@@ -14,6 +17,9 @@ const envBaseZodSchema = z.object({
 
 const envCombinedZodSchema = envBaseZodSchema.merge(mongoUriZodSchema).merge(auth0ConfigZodSchema);
 
+/**
+ * Throws a custom error if any validation fails.
+ */
 export const envStrictZodSchema = envCombinedZodSchema.catch((def) => {
   throw createCustomError(ErrorNames.INVALID_ENVIRONMENT_VARIABLES, formatZodErrors(def.error));
 });

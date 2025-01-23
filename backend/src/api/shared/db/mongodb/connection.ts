@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 import { logger } from "../../utils/logger";
 import config from "../../config/config";
 
+/**
+ * Generates the MongoDB connection URL based on configuration.
+ * @returns {string} The MongoDB connection URL.
+ */
 export const getMongoUrl = () => {
   if (!config.mongo.USER) {
     return `mongodb://${config.mongo.URI}/${config.mongo.DB_NAME}`;
@@ -10,6 +14,9 @@ export const getMongoUrl = () => {
   }
 };
 
+/**
+ * Connects to the MongoDB database using the configured URL.
+ */
 export const MongoConnect = async () => {
   await mongoose.set("strictQuery", false);
 

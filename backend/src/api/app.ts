@@ -4,6 +4,11 @@ import { Server } from "http";
 import config from "./shared/config/config";
 import { logger } from "./shared/utils/logger";
 
+/**
+ * This class represents the main application instance.
+ * It encapsulates the Express application object, the HTTP server,
+ * and the error handler function.
+ */
 class App {
   private readonly _app: Application;
   private readonly _server: Server;
