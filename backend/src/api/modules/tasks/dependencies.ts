@@ -7,13 +7,13 @@ import TaskService from "./services/taskService";
 import TaskController from "./controllers/tasksController";
 import { ITaskService } from "./interfaces/ITaskService";
 
-const container = new Container();
+export const taskContainer = new Container();
 
-container.bind<ITaskRepository>(TASK_TYPES.TaskRepository).to(TaskMongoRepository);
-container.bind<ITaskService>(TASK_TYPES.TaskService).to(TaskService);
-container.bind<TaskController>(TASK_TYPES.TaskController).to(TaskController);
-container.bind<TaskRouter>(TASK_TYPES.TaskRouter).to(TaskRouter);
+taskContainer.bind<ITaskRepository>(TASK_TYPES.TaskRepository).to(TaskMongoRepository);
+taskContainer.bind<ITaskService>(TASK_TYPES.TaskService).to(TaskService);
+taskContainer.bind<TaskController>(TASK_TYPES.TaskController).to(TaskController);
+taskContainer.bind<TaskRouter>(TASK_TYPES.TaskRouter).to(TaskRouter);
 
-const taskRouter = container.get<TaskRouter>(TASK_TYPES.TaskRouter);
+const taskRouter = taskContainer.get<TaskRouter>(TASK_TYPES.TaskRouter);
 
 export default taskRouter;
