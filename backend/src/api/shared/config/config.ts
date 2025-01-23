@@ -22,7 +22,7 @@ const config = {
   },
   mongo: {
     URI: parsedEnv.MONGO_URI || "127.0.0.1:27017",
-    DB_NAME: parsedEnv.MONGO_DB_NAME || "todolist",
+    DB_NAME: `${parsedEnv.MONGO_DB_NAME}_${parsedEnv.NODE_ENV}` || `todolist_${parsedEnv.NODE_ENV}`,
     USER: parsedEnv.MONGO_USER,
     PASSWORD: parsedEnv.MONGO_PASSWORD,
     HOST: parsedEnv.MONGO_HOST,
