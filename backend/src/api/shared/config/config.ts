@@ -1,6 +1,10 @@
 import "dotenv/config";
 import { envStrictZodSchema } from "../schemas/envZodSchema";
 
+/**
+ * Centralized configuration for the application, parsed from environment variables.
+ * * Uses Zod for strict validation of environment variables.
+ */
 const parsedEnv = envStrictZodSchema.parse(process.env);
 
 const config = {
@@ -19,6 +23,9 @@ const config = {
       } environment`,
     API_URL: parsedEnv.API_URL || "http://localhost:8080",
     baseApiPath: "/api",
+  },
+  morgan: {
+    format: parsedEnv.NODE_ENV == "development" ? "dev" : "combined",
   },
   mongo: {
     URI: parsedEnv.MONGO_URI || "127.0.0.1:27017",

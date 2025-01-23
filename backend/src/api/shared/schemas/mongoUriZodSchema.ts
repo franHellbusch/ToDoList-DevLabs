@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+/**
+ * Defines the Zod schema for validating MongoDB configuration environment variables.
+ */
 export const mongoUriZodSchema = z.object({
   MONGO_URI: z.string(),
   MONGO_DB_NAME: z.string(),

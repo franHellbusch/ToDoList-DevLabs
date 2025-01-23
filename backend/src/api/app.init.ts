@@ -7,6 +7,12 @@ import { errorHandlerMiddleware } from "./shared/middlewares/errorHandlerMiddlew
 import toDoRouter from "./modules/tasks/dependencies";
 import healthRouter from "./modules/health/dependencies";
 
+/**
+ * Initializes the application by creating an instance of the App class
+ * and configuring it with necessary middlewares, routes, and the error handler.
+ *
+ * @returns An instance of the initialized App class.
+ */
 const appInit = () => {
   return new App({
     routes: [healthRouter.getRouter(), toDoRouter.getRouter()],
@@ -14,7 +20,7 @@ const appInit = () => {
       cors(config.cors),
       express.json(),
       express.urlencoded({ extended: true }),
-      morgan("dev"),
+      morgan(config.morgan.format),
     ],
     errorHandler: errorHandlerMiddleware,
   });
