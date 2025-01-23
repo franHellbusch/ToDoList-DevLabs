@@ -2,6 +2,9 @@
   "name": "todolist-devlabs-backend",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "node": "20.18.0"
+  },
   "scripts": {
     "test": "cross-env NODE_ENV=test jest",
     "test:watch": "cross-env NODE_ENV=test jest --watch",
