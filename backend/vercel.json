@@ -1,5 +1,8 @@
 {
     "version": 2,
+    "buildCommand": "npm run build",
+    "devCommand": "npm run dev",
+    "installCommand": "npm install",
     "builds": [
         {
             "src": "dist/index.js",
@@ -11,9 +14,6 @@
             }
         }
     ],
-    "buildCommand": "npm run build",
-    "devCommand": "npm run dev",
-    "installCommand": "npm install",
     "routes": [
         {
             "src": "/(.*)",
