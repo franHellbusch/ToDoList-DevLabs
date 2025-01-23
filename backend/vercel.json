@@ -1,5 +1,17 @@
 {
     "version": 2,
+    "builds": [
+        {
+            "src": "dist/index.js",
+            "use": "@vercel/node",
+            "config": {
+                "installCommand": "npm install",
+                "includeFiles": [
+                    "dist/**"
+                ]
+            }
+        }
+    ],
     "routes": [
         {
             "src": "/(.*)",
