@@ -1,3 +1,6 @@
+/**
+ * Symbols for dependency injection.
+ */
 const TASK_TYPES = {
   TaskController: Symbol("TaskController"),
   TaskRouter: Symbol("TaskRouter"),

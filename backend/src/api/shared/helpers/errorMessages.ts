@@ -1,6 +1,9 @@
 import { ErrorNames } from "./errorNames";
 import httpStatus from "http-status";
 
+/**
+ * Object containing predefined error messages and their corresponding HTTP status codes.
+ */
 export const ErrorMessages = {
   [ErrorNames.INTERNAL_SERVER_ERROR]: {
     message: "Internal Server Error",

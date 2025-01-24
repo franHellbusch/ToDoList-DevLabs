@@ -3,6 +3,10 @@ import BaseRouter from "../../../shared/routes/baseRouter";
 import HEALTH_TYPES from "../types/HealthTypes";
 import HealthController from "../controllers/HealthController";
 
+/**
+ * Health router for the application.
+ * Handles health check requests.
+ */
 @injectable()
 class HealthRouter extends BaseRouter {
   constructor(
@@ -11,6 +15,9 @@ class HealthRouter extends BaseRouter {
     super();
   }
 
+  /**
+   * Initializes health check route.
+   */
   initRoutes(): void {
     this.get("/health", (...params) => this.healthController.getHealthMessage(...params));
   }

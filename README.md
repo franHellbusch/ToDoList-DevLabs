@@ -128,7 +128,7 @@ This project utilizes a monorepository structure, housing both the frontend and 
 
 - **Start command:** Define start command: `npm run start`.
 
-- **Set environment variables:** Define environment variables as specified in the .env.example file in the backend directory.
+- **Set environment variables:** Define environment variables as specified in the `.env.example` file in the backend directory.
 
 - **Configure domain:** If you have a custom domain, configure it to point to your deployed application.
 
@@ -141,7 +141,7 @@ This project utilizes a monorepository structure, housing both the frontend and 
   - **Directory:** Specify the directory containing your frontend application as `frontend`.
   - **Framework detection:** Vercel will automatically detect your frontend framework (React).
 
-- **Set environment variables:** Define environment variables as specified in the .env.example file in the frontend directory.
+- **Set environment variables:** Define environment variables as specified in the `.env.example` file in the frontend directory.
 
 - **Configure domain:** Connect your custom domain to Vercel.
 

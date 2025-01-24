@@ -37,7 +37,9 @@ const TaskSchema = new Schema<IDBMongoTask>(
   }
 );
 
-// Duplicate the ID field.
+/**
+ * Creates a virtual property "id" that maps to the "_id" field.
+ */
 TaskSchema.virtual("id").get(function () {
   return this._id;
 });
