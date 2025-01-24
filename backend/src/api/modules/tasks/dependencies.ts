@@ -7,6 +7,7 @@ import TaskService from "./services/taskService";
 import TaskController from "./controllers/tasksController";
 import { ITaskService } from "./interfaces/ITaskService";
 
+// InversifyJS container for task-related dependencies.
 export const taskContainer = new Container();
 
 taskContainer.bind<ITaskRepository>(TASK_TYPES.TaskRepository).to(TaskMongoRepository);

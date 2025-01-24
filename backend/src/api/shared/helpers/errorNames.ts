@@ -1,3 +1,6 @@
+/**
+ * Enum containing predefined error names.
+ */
 export const ErrorNames = {
   INTERNAL_SERVER_ERROR: "INTERNAL_SERVER_ERROR",
   UNAUTHORIZED: "UNAUTHORIZED",

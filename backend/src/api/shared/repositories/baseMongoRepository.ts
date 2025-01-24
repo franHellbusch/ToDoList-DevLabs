@@ -1,6 +1,11 @@
 import { Document, Model, RootFilterQuery, UpdateQuery } from "mongoose";
 import { catchAndCreateMongoError } from "../helpers/catchAndCreateMongoError";
 
+/**
+ * Base class for Mongoose repositories.
+ * This class provides basic CRUD (Create, Read, Update, Delete) operations for MongoDB documents using the Mongoose ODM.
+ * @template T - The type of the mongoose document model.
+ */
 export class BaseMongoRepository<T extends Document> {
   constructor(private readonly model: Model<T>) {}
 
