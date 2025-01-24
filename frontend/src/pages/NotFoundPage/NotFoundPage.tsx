@@ -13,6 +13,7 @@ const NotFoundPage: React.FC = () => {
   const [count, setCount] = useState(20);
   const navigate = useNavigate();
 
+  // Simulates a countdown
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCount((prevCount) => prevCount - 1);

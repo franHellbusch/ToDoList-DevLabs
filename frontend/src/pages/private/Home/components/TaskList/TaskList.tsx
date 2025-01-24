@@ -8,6 +8,7 @@ interface ITaskListProps {
 }
 
 const TaskList: React.FC<ITaskListProps> = ({ tasks }) => {
+  // Filter for completed or pending tasks
   const completedTasks = tasks.filter((task) => task.completed);
   const pendingTasks = tasks.filter((task) => !task.completed);
 

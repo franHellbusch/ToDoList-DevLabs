@@ -22,12 +22,14 @@ const Home: React.FC = () => {
   const { showAlert } = useAlert();
   const tasks = useAppSelector((state) => state.tasks);
   const dispatch = useAppDispatch();
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0); // Active tab index (0 for All, 1 for Today)
 
+  // Handles tab selection changes.
   const handleChange = (_event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
+  // Fetches all tasks from the API and updates the Redux store.
   const getTasks = async () => {
     const data = await getAllTasks();
     dispatch(setTasks(data));
@@ -39,6 +41,7 @@ const Home: React.FC = () => {
     queryFn: getTasks,
   });
 
+  // Handles errors during data fetching.
   if (isError) {
     showAlert(error.message, "error");
   }

@@ -5,6 +5,9 @@ import { Backdrop, Fade, Modal } from "@mui/material";
 import CreateTaskModal from "@/components/CreateTaskModal/CreateTaskModal";
 import UpdateTaskModal from "@/components/UpdateTaskModal/UpdateTaskModal";
 
+/**
+ * Manages the visibility, mode, and selected task for the modal.
+ */
 export const ModalProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {

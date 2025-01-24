@@ -6,6 +6,10 @@ import Navbar from "./components/Navbar/Navbar";
 
 const Home = lazy(() => import("./Home/Home"));
 
+/**
+ * Private component.
+ * Renders the main content of the application for authenticated users. 
+ */
 const Private: React.FC = () => {
   return (
     <>

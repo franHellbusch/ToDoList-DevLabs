@@ -27,12 +27,13 @@ const TaskItem: React.FC<ITaskItemProps> = ({ task }) => {
   const { showUpdateTaskModal } = useModal();
   const { showAlert } = useAlert();
   const dispatch = useAppDispatch();
-  const [expanded, setExpanded] = useState(false);
+  const [expandedCollapse, setExpandedCollapse] = useState(false);
 
   const handleExpandClick = () => {
-    setExpanded(!expanded);
+    setExpandedCollapse(!expandedCollapse);
   };
 
+  // Manage the asynchronous task delete process.
   const deleteMutation = useMutation({
     mutationFn: deleteTask,
     onSuccess: () => {
@@ -46,10 +47,12 @@ const TaskItem: React.FC<ITaskItemProps> = ({ task }) => {
 
   const handleDelete = () => deleteMutation.mutate(task.id);
 
+  // Handle the task update logic.
   const mutationUpdateTaskFn = async (updatedTask: IUpdateTaskDTO) => {
     return await updateTask(task.id, updatedTask);
   };
 
+  // Manage the asynchronous task update process.
   const updateMutation = useMutation({
     mutationFn: mutationUpdateTaskFn,
     onSuccess: (updatedTask) => {
@@ -61,6 +64,7 @@ const TaskItem: React.FC<ITaskItemProps> = ({ task }) => {
     },
   });
 
+  // handle cempleted status change.
   const handleUpdateCompleted = () =>
     updateMutation.mutate({ completed: !task.completed });
 
@@ -69,7 +73,7 @@ const TaskItem: React.FC<ITaskItemProps> = ({ task }) => {
       <TaskItemCard elevation={0}>
         <TaskItemContent>
           <Box display="flex" gap="10px" alignItems="center">
-            <OpenTaskItemButton open={expanded} onClick={handleExpandClick}>
+            <OpenTaskItemButton open={expandedCollapse} onClick={handleExpandClick}>
               <ExpandMoreIcon />
             </OpenTaskItemButton>
             {task.completed ? (
@@ -100,7 +104,7 @@ const TaskItem: React.FC<ITaskItemProps> = ({ task }) => {
             task={task}
           />
         </TaskItemContent>
-        <TaskItemCollapse expanded={expanded} task={task} />
+        <TaskItemCollapse expanded={expandedCollapse} task={task} />
       </TaskItemCard>
     </>
   );
