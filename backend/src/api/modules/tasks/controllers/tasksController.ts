@@ -6,10 +6,16 @@ import TaskResponseDTOMapper from "../dtos/TaskResponseDTOMapper";
 import { createCustomError } from "../../../shared/helpers/createCustomError";
 import { ErrorNames } from "../../../shared/helpers/errorNames";
 
+/**
+ * Controller for handling task-related requests.
+ */
 @injectable()
 class TaskController {
   constructor(@inject(TASK_TYPES.TaskService) private readonly taskService: ITaskService) {}
 
+  /**
+   * Retrieves a list of all tasks for the authenticated user.
+   */
   async getAllTasks(req: Request, res: Response, _next: NextFunction) {
     if (!req.auth || !req.auth.payload || !req.auth.payload.sub) {
       throw createCustomError(ErrorNames.UNAUTHORIZED);
@@ -24,6 +30,9 @@ class TaskController {
     });
   }
 
+  /**
+   * Retrieves a specific task by its ID.
+   */
   async getTaskById(req: Request, res: Response, _next: NextFunction) {
     if (!req.auth || !req.auth.payload || !req.auth.payload.sub) {
       throw createCustomError(ErrorNames.UNAUTHORIZED);
@@ -39,6 +48,9 @@ class TaskController {
     });
   }
 
+  /**
+   * Creates a new task for the authenticated user.
+   */
   async createTask(req: Request, res: Response, _next: NextFunction) {
     if (!req.auth || !req.auth.payload || !req.auth.payload.sub) {
       throw createCustomError(ErrorNames.UNAUTHORIZED);
@@ -53,6 +65,9 @@ class TaskController {
     });
   }
 
+  /**
+   * Updates an existing task by its ID.
+   */
   async updateTaskById(req: Request, res: Response, _next: NextFunction) {
     if (!req.auth || !req.auth.payload || !req.auth.payload.sub) {
       throw createCustomError(ErrorNames.UNAUTHORIZED);
@@ -68,6 +83,9 @@ class TaskController {
     });
   }
 
+  /**
+   * Deletes a task by its ID.
+   */
   async deleteTaskById(req: Request, res: Response, _next: NextFunction) {
     if (!req.auth || !req.auth.payload || !req.auth.payload.sub) {
       throw createCustomError(ErrorNames.UNAUTHORIZED);

@@ -20,11 +20,13 @@ describe("TaskRepository", () => {
   let taskRepository: ITaskRepository;
 
   beforeAll(async () => {
+    // Establish a database connection before running tests
     await MongoConnect();
     taskRepository = taskContainer.get<ITaskRepository>(TASK_TYPES.TaskRepository);
   });
 
   afterAll(async () => {
+    // Disconnect from the database after all tests have run
     await mongoose.disconnect();
   });
 

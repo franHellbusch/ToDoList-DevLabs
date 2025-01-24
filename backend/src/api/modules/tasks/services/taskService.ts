@@ -9,16 +9,21 @@ import IUpdateTaskDTO from "../dtos/IUpdateTaskDTO";
 import { ErrorNames } from "../../../shared/helpers/errorNames";
 import { createCustomError } from "../../../shared/helpers/createCustomError";
 
+/**
+ * Service layer for managing task-related business logic.
+ */
 @injectable()
 class TaskService implements ITaskService {
   constructor(
     @inject(Task_TYPES.TaskRepository) private readonly taskRepository: ITaskRepository
   ) {}
 
+  // Retrieves a list of all tasks associated with the specified user.
   async getAllTasksByUser(userId: string): Promise<IDBTask[]> {
     return this.taskRepository.getAllByUser(userId);
   }
 
+  // Retrieves a specific task by ID for the specified user.
   async getTaskByIdAndUser(id: string, userId: string): Promise<IDBTask> {
     const task = await this.taskRepository.getByIdAndUser(id, userId);
 
@@ -29,6 +34,7 @@ class TaskService implements ITaskService {
     return task;
   }
 
+  // Creates a new task for the specified user.
   async createOneTask(task: ICreateTaskDTO, userId: string): Promise<IDBTask> {
     const parsedUserData = taskStrictZodSchema.parse(task);
 
@@ -37,6 +43,7 @@ class TaskService implements ITaskService {
     return newTask;
   }
 
+  // Updates an existing task for the specified user.
   async updateTaskByIdAndUser(
     id: string,
     updatedInfo: IUpdateTaskDTO,
@@ -55,6 +62,7 @@ class TaskService implements ITaskService {
     return updatedUser;
   }
 
+  // Deletes a task by ID for the specified user.
   async deleteTaskByIdAndUser(id: string, userId: string): Promise<void> {
     const task = await this.taskRepository.getByIdAndUser(id, userId);
 
