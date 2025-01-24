@@ -1,37 +1,49 @@
 import { useState } from "react";
-import { AlertContext } from "./alertContext";
+import { AlertContext, AlertSeverity, AlertState } from "./alertContext";
 import { Alert, Snackbar } from "@mui/material";
 
+/**
+ * Manages the visibility, message and level for the alert.
+ */
 export const AlertProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [message, setMessage] = useState("");
-  const [severity, setSeverity] = useState<
-    "error" | "info" | "success" | "warning"
-  >("info");
+  const [alertState, setAlertState] = useState<AlertState>({
+    isOpen: false,
+    message: "",
+    severity: "info",
+  });
 
   const showAlert = (
     newMessage: string,
-    newSeverity: "error" | "info" | "success" | "warning" = "info",
+    newSeverity: AlertSeverity = "info",
   ) => {
-    setMessage(newMessage);
-    setSeverity(newSeverity);
-    setIsOpen(true);
+    setAlertState({
+      isOpen: true,
+      message: newMessage,
+      severity: newSeverity,
+    });
   };
 
   const hideAlert = () => {
-    setIsOpen(false);
+    setAlertState({
+      ...alertState,
+      isOpen: false,
+    });
   };
 
   return (
     <AlertContext.Provider
-      value={{ isOpen, message, severity, showAlert, hideAlert }}
+      value={{
+        ...alertState,
+        showAlert,
+        hideAlert,
+      }}
     >
       {children}
-      <Snackbar open={isOpen} autoHideDuration={6000} onClose={hideAlert}>
-        <Alert onClose={hideAlert} severity={severity} variant="filled">
-          {message}
+      <Snackbar open={alertState.isOpen} autoHideDuration={6000} onClose={hideAlert}>
+        <Alert onClose={hideAlert} severity={alertState.severity} variant="filled">
+          {alertState.message}
         </Alert>
       </Snackbar>
     </AlertContext.Provider>

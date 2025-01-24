@@ -27,6 +27,7 @@ interface CreateTaskModalProps {
 const CreateTaskModal: React.FC<CreateTaskModalProps> = ({ onClose }) => {
   const { showAlert } = useAlert();
   const dispatch = useAppDispatch();
+  // Handle form submission.
   const { handleSubmit, control, reset } = useForm<ICreateTaskDTO>({
     defaultValues: {
       title: "",
@@ -36,20 +37,22 @@ const CreateTaskModal: React.FC<CreateTaskModalProps> = ({ onClose }) => {
     },
   });
 
+  // Manage the asynchronous task create process.
   const mutation = useMutation({
     mutationFn: createTask,
     onSuccess: (data) => {
-      dispatch(addTask(data));
+      dispatch(addTask(data)); // update redux task state
       showAlert("Task has been successfully created", "success");
-      onClose();
-      reset();
+      onClose(); // close modal
+      reset(); // reset form
     },
     onError: (error) => {
       showAlert(error.message, "error");
     },
   });
 
-  const onSubmit: SubmitHandler<ICreateTaskDTO> = (data) =>
+  // handle form submission.
+  const handleCreate: SubmitHandler<ICreateTaskDTO> = (data) =>
     mutation.mutate(data);
 
   return (
@@ -64,7 +67,7 @@ const CreateTaskModal: React.FC<CreateTaskModalProps> = ({ onClose }) => {
         </Typography>
       </ModalHeader>
       <ModalBody>
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form onSubmit={handleSubmit(handleCreate)}>
           <CreateTaskFormFields control={control} />
           <TaskFormButtonsBox>
             <CancelButton

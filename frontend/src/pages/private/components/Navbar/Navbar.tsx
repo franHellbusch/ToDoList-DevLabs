@@ -14,9 +14,10 @@ const Navbar: React.FC = () => {
   const { logout } = useAuth0();
   const dispatch = useAppDispatch();
 
+  // Handles user logout by calling the Auth0 logout.
   const handleLogout = async () => {
     await logout();
-    dispatch(logoutUser());
+    dispatch(logoutUser()); // update redux task state
   };
 
   return (

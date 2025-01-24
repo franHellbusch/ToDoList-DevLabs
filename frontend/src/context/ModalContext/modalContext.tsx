@@ -1,6 +1,7 @@
 import { ITask } from "@/interfaces/ITask";
 import { createContext, useContext } from "react";
 
+// Defines available modes for the modal.
 export enum modalModes {
   CREATE_TASK = "createTask",
   UPDATE_TASK = "updateTask",

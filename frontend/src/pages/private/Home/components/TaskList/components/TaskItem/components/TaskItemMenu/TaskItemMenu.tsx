@@ -23,23 +23,30 @@ const TaskItemMenu: React.FC<ITaskItemMenuProps> = ({
 }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event: MouseEvent<HTMLElement>) => {
+
+   // Handles the click event on the menu button.
+   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
+  // Handles the closing of the menu.
   const handleClose = () => {
     setAnchorEl(null);
   };
 
+  // Handles the delete action.
   const handleDelete = () => {
     onDelete();
     handleClose();
   };
 
+  // Handles the complete/uncomplete action.
   const handleCompleted = () => {
     onCompleted();
     handleClose();
   };
 
+  // Handles the "Edit" action.
   const handleOpenUpdateModal = () => {
     onOpenModal(task);
     handleClose();
