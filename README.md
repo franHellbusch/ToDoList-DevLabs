@@ -78,7 +78,7 @@ Node.js and npm: Make sure you have Node.js and npm installed on your machine. Y
 1. **Clone the Repository**
 
    ```sh
-   git clone https://github.com/franHellbusch/backend-39765.git
+   git clone https://github.com/franHellbusch/ToDoList-DevLabs.git
    ```
 
 2. **Install Dependencies**
