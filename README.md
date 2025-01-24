@@ -27,9 +27,9 @@
 
 This application empowers users to manage their tasks efficiently with a robust set of features:
 
-- **Robust Task Management:** Create, edit, and delete tasks with ease. Organize tasks with clear and intuitive interfaces.
-- **Secure Authentication:** Implement robust user authentication and authorization with Auth0.
-- **Modern Technology Stack:** Built with TypeScript for enhanced type safety and maintainability. Leveraged Material-UI and Emotion for a visually appealing and responsive user interface.
+- **Manage tasks effectively:** Create, edit, delete, and organize tasks with ease.
+- **Authenticate securely:** Utilize Auth0 for robust user authentication and authorization.
+- **Experience a modern interface:** Built with TypeScript, Material-UI, and Emotion for enhanced type safety and a visually appealing user experience.
 
 ## Technologies Used
 
@@ -47,7 +47,7 @@ This application empowers users to manage their tasks efficiently with a robust 
 
 - [![Node.js](https://img.shields.io/badge/Node.js-%2343853D.svg?logo=node.js&style=for-the-badge)](https://nodejs.org/)
 - ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-- [![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?logo=mongodb&style=for-the-badge)](https://www.mongodb.com/)
+- ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 - [![Express](https://img.shields.io/badge/Express-%23404d59.svg?logo=express&style=for-the-badge)](https://expressjs.com/)
 - [![Pino](https://img.shields.io/badge/Pino-%23074041.svg?logo=pino&style=for-the-badge)](https://getpino.io/)
 - ![Zod](https://img.shields.io/badge/zod-%233068b7.svg?style=for-the-badge&logo=zod&logoColor=white)
@@ -85,11 +85,11 @@ Node.js and npm: Make sure you have Node.js and npm installed on your machine. Y
 
    ```sh
    # Navigate to the backend directory
-    cd backend-39765/backend
+    cd ./backend
     npm install
 
    # Navigate to the frontend directory
-    cd ../frontend
+    cd ./frontend
     npm install
    ```
 
@@ -101,11 +101,11 @@ Node.js and npm: Make sure you have Node.js and npm installed on your machine. Y
 
    ```
    # Start the backend development server
-    cd backend-39765/backend
+    cd ./backend
     npm run dev
 
    # Start the frontend development server
-    cd ../frontend
+    cd ./frontend
     npm run dev
    ```
 
@@ -159,6 +159,6 @@ Feel free to reach out if you have any questions, suggestions, or would like to 
 - **LinkedIn:** [Francisco Hellbusch](https://www.linkedin.com/in/fhdeveloper/)
 
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/franHellbusch/backend-39765/blob/main/LICENSE
+[license-url]: https://github.com/franHellbusch/ToDoList-DevLabs/blob/main/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/fhdeveloper/
