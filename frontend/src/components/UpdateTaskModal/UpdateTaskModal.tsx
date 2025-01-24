@@ -10,7 +10,7 @@ import {
 } from "@/styled-components";
 import { TaskUpdateButtonsBox, TaskUpdateTitle } from "./styled-components";
 import IUpdateTaskDTO from "@/dtos/IUpdateTaskDTO";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { ITask } from "@/interfaces/ITask";
 import dayjs from "dayjs";
 import { updateTask } from "@/services/tasksServices";
@@ -31,6 +31,7 @@ const UpdateTaskModal: React.FC<UpdateTaskModalProps> = ({
 }) => {
   const { showAlert } = useAlert();
   const dispatch = useAppDispatch();
+  // Handle form submission.
   const { handleSubmit, control } = useForm<IUpdateTaskDTO>({
     defaultValues: {
       title: selectedTask.title,
@@ -41,25 +42,28 @@ const UpdateTaskModal: React.FC<UpdateTaskModalProps> = ({
     },
   });
 
+  // Handle the task update logic.
   const mutationUpdateTaskFn = async (updatedTask: IUpdateTaskDTO) => {
     return await updateTask(selectedTask.id, updatedTask);
   };
 
+  // Manage the asynchronous task update process.
   const mutation = useMutation({
     mutationFn: mutationUpdateTaskFn,
     onSuccess: (updatedTask) => {
-      dispatch(updateOneTask(updatedTask));
+      dispatch(updateOneTask(updatedTask)); // update redux task state
       showAlert("Task has been successfully updated", "success");
-      onClose();
+      onClose(); // close modal
     },
     onError: (error) => {
       showAlert(error.message, "error");
     },
   });
 
-  const handleUpdate = (updatedInfo: IUpdateTaskDTO) => {
+  // handle form submission.
+  const handleUpdate: SubmitHandler<IUpdateTaskDTO> = (updatedInfo: IUpdateTaskDTO) => 
     mutation.mutate(updatedInfo);
-  };
+  ;
 
   return (
     <>

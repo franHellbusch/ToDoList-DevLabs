@@ -1,4 +1,3 @@
-import "./App.css";
 import AuthGuard from "./guards/auth.guard";
 import { Navigate, Route } from "react-router-dom";
 import { PrivateRoutes, PublicRoutes } from "./types/routes";
@@ -33,18 +32,12 @@ function App() {
               <ModalProvider>
                 <Suspense fallback={<Loader />}>
                   <RoutesNotFound>
-                    <Route
-                      path="/"
-                      element={<Navigate to={`/${PrivateRoutes.PRIVATE}`} />}
-                    />
+                    <Route path='/' element={<Navigate to={`/${PrivateRoutes.PRIVATE}`} />} />
                     <Route element={<NoAuthGuard />}>
                       <Route path={PublicRoutes.LOGIN} element={<Login />} />
                     </Route>
                     <Route element={<AuthGuard />}>
-                      <Route
-                        path={`/${PrivateRoutes.PRIVATE}/*`}
-                        element={<Private />}
-                      />
+                      <Route path={`/${PrivateRoutes.PRIVATE}/*`} element={<Private />} />
                     </Route>
                   </RoutesNotFound>
                 </Suspense>
